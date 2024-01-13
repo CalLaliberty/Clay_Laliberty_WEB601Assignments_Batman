@@ -1,6 +1,6 @@
 # Clay_Laliberty_WEB601Assignments_Batman
 
-# 🦇 Welcome to the Batman React Project! 🌃
+# 🦇 Welcome to the Batman Angular Project! 🌃
 
 Name: Clay Laliberty 👋
 
