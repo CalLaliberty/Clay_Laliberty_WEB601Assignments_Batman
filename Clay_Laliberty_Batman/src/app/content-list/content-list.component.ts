@@ -1,17 +1,22 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Content } from '../helper-files/content-interface';
 import { CommonModule } from '@angular/common';
+import { ContentTypeFilterPipe } from "../content-type-filter.pipe";
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-content-list',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './content-list.component.html',
-  styleUrl: './content-list.component.scss'
+    selector: 'app-content-list',
+    standalone: true,
+    templateUrl: './content-list.component.html',
+    styleUrl: './content-list.component.scss',
+    imports: [CommonModule, ContentTypeFilterPipe, FormsModule]
 })
 export class ContentListComponent implements OnInit {
   @Input() contentItems: Content[];
-
+  searchTitle = '';
+  contentFound = false;
+  searchResult = '';
+ 
   constructor() {
     this.contentItems = [];
   }
@@ -23,8 +28,8 @@ export class ContentListComponent implements OnInit {
       title: 'Batman Begins 🦇',
       description: 'A young Bruce Wayne becomes Batman and faces his first challenges.',
       creator: 'Christopher Nolan 🎬',
-      imgURL: 'https://example.com/batman-begins.png',
-      type: 'movie 🎥',
+      imgURL: '/assets/images/Batman Begins.jpg',
+      type: '',
       tags: ['Batman', 'Action', 'Adventure']
     },
     {
@@ -32,8 +37,8 @@ export class ContentListComponent implements OnInit {
       title: 'The Dark Knight 🦇',
       description: 'Batman faces the Joker in a battle for Gotham City.',
       creator: 'Christopher Nolan 🎬',
-      imgURL: 'https://example.com/the-dark-knight.png',
-      type: 'movie 🎥',
+      imgURL: '/assets/images/The Dark Knight.jpg',
+      type: '',
       tags: ['Batman', 'Action', 'Crime', 'Drama']
     },
     {
@@ -41,8 +46,8 @@ export class ContentListComponent implements OnInit {
       title: 'The Dark Knight Rises 🦇',
       description: 'Batman returns to face Bane and save Gotham from destruction.',
       creator: 'Christopher Nolan 🎬',
-      imgURL: 'https://example.com/the-dark-knight-rises.png',
-      type: 'movie 🎥',
+      imgURL: '/assets/images/The Dark Knight Rises.jpg',
+      type: 'movie',
       tags: ['Batman', 'Action', 'Adventure']
     },
     {
@@ -50,8 +55,8 @@ export class ContentListComponent implements OnInit {
       title: 'Batman: Mask of the Phantasm 🦇',
       description: 'Batman faces a mysterious vigilante while dealing with his past.',
       creator: 'Eric Radomski, Bruce Timm 🎬',
-      imgURL: 'https://example.com/batman-mask-of-the-phantasm.png',
-      type: 'movie 🎥',
+      imgURL: '/assets/images/Mask of the Phantasm.jpg',
+      type: 'movie',
       tags: ['Batman', 'Animation', 'Action', 'Mystery']
     },
     {
@@ -59,10 +64,29 @@ export class ContentListComponent implements OnInit {
       title: 'Batman Returns 🦇',
       description: 'Batman battles the Penguin and Catwoman in Gotham City.',
       creator: 'Tim Burton🎬',
-      imgURL: 'https://example.com/batman-returns.png',
-      type: 'movie 🎥',
+      imgURL: '/assets/images/Batman Returns.jpg',
+      type: 'movie',
       tags: ['Batman', 'Action', 'Fantasy']
+    },
+    {
+      "id": 6,
+      "title": "Batman Beyond 🦇",
+      "description": "In a futuristic Gotham City, Terry McGinnis takes up the mantle of Batman under the guidance of an elderly Bruce Wayne.",
+      "creator": "Bruce Timm, Paul Dini 🎬",
+      "imgURL": "/assets/images/Batman Beyond.jpg",
+      "type": "animated series",
+      "tags": ["Batman", "Future", "Action"]
+    },
+    {
+      "id": 7,
+      "title": "Batman: The Animated Series 🦇",
+      "description": "The Dark Knight battles villains like the Joker, Two-Face, and Poison Ivy in Gotham City.",
+      "creator": "Bruce Timm, Eric Radomski 🎬",
+      "imgURL": "/assets/images/BatmanAS.jpg",
+      "type": "animated series",
+      "tags": ["Batman", "Action", "Mystery"]
     }
+        
   ];
 
 }
@@ -70,6 +94,11 @@ export class ContentListComponent implements OnInit {
 displayContentDetails(contentItem: Content): void {
   console.log('Content ID:', contentItem.id);
   console.log('Content Title:', contentItem.title);
+}
+
+searchContent() {
+  this.contentFound = this.contentItems.some(item => item.title === this.searchTitle);
+  this.searchResult = this.contentFound ? 'Content found!' : 'Content not found.';
 }
 
 }
