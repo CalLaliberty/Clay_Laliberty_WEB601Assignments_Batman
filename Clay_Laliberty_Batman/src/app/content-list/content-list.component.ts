@@ -97,7 +97,7 @@ displayContentDetails(contentItem: Content): void {
 }
 
 searchContent() {
-  this.contentFound = this.contentItems.some(item => item.title === this.searchTitle);
+  this.contentFound = this.contentItems.some(item => item.title.toLowerCase() === this.searchTitle.toLocaleLowerCase());
   this.searchResult = this.contentFound ? 'Content found!' : 'Content not found.';
 }
 
