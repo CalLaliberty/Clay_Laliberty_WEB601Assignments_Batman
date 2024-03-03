@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ContentTypeFilterPipe } from "../content-type-filter.pipe";
 import { HoverOverDirective } from '../hover-over.directive';
 import { FormsModule } from '@angular/forms';
+import { CreateContentComponent } from '../create-content/create-content.component';
 
 @Component({
     selector: 'app-content-list',
     standalone: true,
     templateUrl: './content-list.component.html',
     styleUrl: './content-list.component.scss',
-    imports: [CommonModule, ContentTypeFilterPipe, FormsModule, HoverOverDirective]
+    imports: [CommonModule, ContentTypeFilterPipe, FormsModule, HoverOverDirective, CreateContentComponent]
 })
 export class ContentListComponent implements OnInit {
   @Input() contentItems: Content[];
@@ -100,6 +101,11 @@ displayContentDetails(contentItem: Content): void {
 searchContent() {
   this.contentFound = this.contentItems.some(item => item.title.toLowerCase() === this.searchTitle.toLocaleLowerCase());
   this.searchResult = this.contentFound ? 'Content found!' : 'Content not found.';
+}
+
+// Event handler, receives newly added content 
+onNewContentItemAdded(content: Content) {
+  this.contentItems = [...this.contentItems, content];
 }
 
 }

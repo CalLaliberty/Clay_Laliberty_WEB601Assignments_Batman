@@ -8,6 +8,9 @@
   </p>
 </div>
 
+<!-- Listens for newContentItemAdded  -->
+<app-create-content (newContentItemAdded)="onNewContentItemAdded($event)"></app-create-content>
+
 
 <h1>All Content</h1>
 <div class="card-container" *ngIf="contentItems">
@@ -18,7 +21,7 @@
     <p><strong>Plot:</strong> {{ contentItem.description }}</p>
     <p><strong>Creator:</strong> {{ contentItem.creator }}</p>
     <p appHoverOver><strong>Type:</strong> {{ contentItem.type }}</p>
-    <p appHoverOver affect="bold"><strong>Tags:</strong> {{ contentItem.tags ? contentItem.tags.join(', ') : '' }}</p>
+    <p appHoverOver affect="bold"><strong>Tags:</strong> {{ contentItem.tags }}</p>
   </div>
 </div>
 
@@ -29,11 +32,11 @@
   <div class="card-movie" *ngFor="let contentItem of contentItems | contentTypeFilter:'Movie'">
       <h3>{{ contentItem.title }}</h3>
       <img *ngIf="!contentItem.imgURL" src="/assets/images/batmanLogo.jpg" alt="{{ contentItem.title }}" (click)="displayContentDetails(contentItem)">
-      <img [src]="contentItem.imgURL" alt="{{ contentItem.title }}" (click)="displayContentDetails(contentItem)">
+      <img [src]="contentItem.imgURL" (click)="displayContentDetails(contentItem)">
       <p><strong>Plot:</strong> {{ contentItem.description }}</p>
       <p><strong>Creator:</strong> {{ contentItem.creator }}</p>
       <p appHoverOver><strong>Type:</strong> {{ contentItem.type }}</p>
-      <p appHoverOver affect="bold"><strong>Tags:</strong> {{ contentItem.tags ? contentItem.tags.join(', ') : '' }}</p>
+      <p appHoverOver affect="bold"><strong>Tags:</strong> {{ contentItem.tags }}</p>
     </div>
 </div>
 
@@ -42,11 +45,11 @@
   <div class="card-series" *ngFor="let contentItem of contentItems | contentTypeFilter:'Animated Series'">
       <h3>{{ contentItem.title }}</h3>
       <img *ngIf="!contentItem.imgURL" src="/assets/images/batmanLogo.jpg" alt="{{ contentItem.title }}" (click)="displayContentDetails(contentItem)">
-      <img [src]="contentItem.imgURL" alt="{{ contentItem.title }}" (click)="displayContentDetails(contentItem)">
+      <img [src]="contentItem.imgURL"  (click)="displayContentDetails(contentItem)">
       <p><strong>Plot:</strong> {{ contentItem.description }}</p>
       <p><strong>Creator:</strong> {{ contentItem.creator }}</p>
       <p appHoverOver><strong>Type:</strong> {{ contentItem.type }}</p>
-      <p appHoverOver affect="bold"><strong>Tags:</strong> {{ contentItem.tags ? contentItem.tags.join(', ') : '' }}</p>
+      <p appHoverOver affect="bold"><strong>Tags:</strong> {{ contentItem.tags }}</p>
     </div>
 </div>
 
