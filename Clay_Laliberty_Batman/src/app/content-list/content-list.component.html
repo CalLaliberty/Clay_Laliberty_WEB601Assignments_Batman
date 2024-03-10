@@ -8,6 +8,16 @@
   </p>
 </div>
 
+<h1>Single Item</h1>
+<div class="single-card" *ngIf="singleItemId">
+  <h2>{{ singleItemId.title }}</h2>
+  <img *ngIf="!singleItemId.imgURL" src="/assets/images/batmanLogo.jpg" alt="{{ singleItemId.title }}">
+  <img [src]="singleItemId.imgURL" alt="{{ singleItemId.title }}">
+  <p><strong>Plot:</strong> {{ singleItemId.description }}</p>
+  <p><strong>Creator:</strong> {{ singleItemId.creator }}</p>
+  <p appHoverOver><strong>Type:</strong> {{ singleItemId.type }}</p>
+  <p appHoverOver affect="bold"><strong>Tags:</strong> {{ singleItemId.tags ? singleItemId.tags.join(', ') : '' }}</p>
+</div>
 
 <h1>All Content</h1>
 <div class="card-container" *ngIf="contentItems">

@@ -72,3 +72,11 @@ h1 {
     color: green;
   }
 }
+
+.single-card {
+  border: 1px solid $border-color;
+  padding: $padding;
+  margin-bottom: $padding;
+  box-shadow: 0px 4px 8px;
+  font-family: $font;
+}
